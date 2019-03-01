@@ -1,0 +1,182 @@
+{layout name="layout" /}
+<div class="main-content">
+	<div class="main-content-inner">
+		<div class="breadcrumbs" id="breadcrumbs">
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="index.html">首页</a>
+				</li>
+				<li>
+					<a href="#">系统设置</a>
+				</li>
+				<li class="active">新增用户组</li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<form class="form-horizontal" action="" method="post" id="myform"> 
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 用户组名 </label>
+							<div class="col-sm-9">
+								<input type="text" placeholder="用户组名" class="col-xs-10 col-sm-5" value="" name="name">
+								<span class="help-inline col-xs-12 col-sm-7">
+									<span class="middle"></span>
+								</span>
+							</div>
+						</div>
+						<div class="space-4"></div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-1">权限选择 </label>
+							<div class="col-sm-9">
+								<div class="col-sm-10">
+								<!-- 顶级权限遍历开始 -->
+								{foreach name='rules' item='first'}
+									<div class="row">
+										<div class="widget-box">
+											<div class="widget-header">
+												<h4 class="widget-title">
+													<label>
+														<input class="ace ace-checkbox-2 father first" type="checkbox" name="rule[]" value="{$first.id}"/>
+														<!-- 顶级权限名称 -->
+														<span class="lbl">{$first['Rule_name']}</span>
+
+													</label>
+												</h4>
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="ace-icon fa fa-chevron-up"></i>
+													</a>
+												</div>
+											</div>
+											<div class="widget-body">
+												<!-- 一级权环遍历开始 -->
+												{foreach name='$first.list' item='second'}
+												<div class="widget-main row">
+													<!-- 一级权限 -->
+													<label class="col-xs-2">
+														<input class="ace ace-checkbox-2 second" type="checkbox" name="rule[]" value="{$second['id']}"/>
+														<span class="lbl">{$second.Rule_name}</span>
+													</label>
+													<!-- 二级权环遍历开始 -->
+													{foreach  name='$second.list' item='three'}
+													<label class="col-xs-2">
+														<input class="ace ace-checkbox-2 three" type="checkbox" name="rule[]" value="{$three.id}"/>
+														<span class="lbl">{$three.Rule_name}</span>
+													</label>
+													{/foreach}
+													<!-- 二级权限遍历结束 -->
+												</div>
+												{/foreach}
+												<!-- 一级权限遍历结束 -->
+											</div>
+										</div>
+									</div>
+								{/foreach}
+								<!-- 顶级权限遍历结束 -->
+								</div>
+							</div>
+						</div>
+						<div class="space-4"></div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 是否启用 </label>
+							<div class="radio">
+								<label>
+									<input type="radio" class="ace" name="status" value='1' checked="1">
+									<span class="lbl"> 启用</span>
+								</label>
+								<label>
+									<input type="radio" class="ace" name="status" value='2'>
+									<span class="lbl"> 禁用</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-offset-2 col-md-9">
+							<button class="btn btn-info submit" type="submit"><i class="icon-ok bigger-110"></i>添加</button>&nbsp; &nbsp; &nbsp;
+							<button class="btn" type="reset"><i class="icon-undo bigger-110"></i>重置</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+		$().ready(function() {
+			// 在键盘按下并释放及提交后验证提交表单
+			  $("#myform").validate({
+			  		rules:{
+			  			name:{
+			  				'required':true,
+			  				'minlength':3,
+			  				'maxlength':10
+			  			}
+
+			  		},
+			  		messages:{
+			  			name:{
+			  				'required':"当前内容不能为空！",
+			  				'minlength':"最小长度为3个字符！",
+			  				'maxlength':"最大长度不能超过10个字符！"
+			  			}
+			  		}
+
+			  })
+    
+		});
+
+		// 点击选择顶级权限时，自动改变子权限显示效果
+		$('.first').click(function(){
+			// alert(1);
+			// alert($(this).prop("checked"));
+			// 将 布尔值  付给自己的子权限
+			$(this).parents('.widget-box').find("input[type='checkbox']").prop('checked',$(this).prop("checked"));
+		});
+
+
+		// 点击一级权限时，让自己所以的子权限选中，父类权限选中，不管兄弟权限
+		$('.second').click(function(){
+			// alert(1);
+			
+			// 处理子权限
+			$(this).parents('.widget-main').find('.three').prop('checked',$(this).prop("checked"));
+
+			// 处理父类问题
+			if($(this).prop("checked")){
+				// 被选中  值为true的时候
+				$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+			}else{
+				//   false  取消  选中的长度  小于等于0时，进行处理
+				 if($(this).parents('.widget-box').find('.second:checked').length <=0){
+				 	$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+				 }
+				 
+				 // alert($(this).parents('.widget-box').find('.second:checked').length);
+			}
+			
+		})
+
+		// 处理 二级权限点击问题
+		$('.three').click(function(){
+			// alert(1);
+			if($(this).prop("checked")){
+
+				$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+
+				$(this).parents('.widget-main').find('.second').prop('checked',$(this).prop("checked"));
+			}else{
+				//处理二级权限被选中的长度
+				if($(this).parents('.widget-main').find('.three:checked').length <=0){
+					$(this).parents('.widget-main').find('.second').prop('checked',$(this).prop("checked"));
+				}	
+				// alert($(this).parents('.widget-main').find('.three:checked').length);
+				// 
+				 if($(this).parents('.widget-box').find('.second:checked').length <=0){
+				 	$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+				 }
+			}
+		})
+
+</script>

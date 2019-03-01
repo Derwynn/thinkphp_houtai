@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 头部 -->
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta charset="utf-8"/>
+	<title>控制台</title>
+	<meta name="keywords" content="关键词"/>
+	<meta name="description" content="网站描述"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+	<link rel="stylesheet" href="__CSS__/bootstrap.css"/>
+	<link rel="stylesheet" href="__CSS__/font-awesome.css"/>
+	<link rel="stylesheet" href="__CSS__/jquery-ui.css"/>
+	<link rel="stylesheet" href="__CSS__/ace-fonts.css"/>
+	<link rel="stylesheet" href="__CSS__/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+	<script src="__JS__/ace-extra.js"></script>
+	<script src="__JS__/jquery.js"></script>
+</head>
+<!-- 头部结束 -->
+<body class="no-skin">
+<!-- 导航 -->
+	<div id="navbar" class="navbar navbar-default">
+		<div class="navbar-container" id="navbar-container">
+			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+				<span class="sr-only">Toggle sidebar</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-header pull-left">
+				<a href="index.html" class="navbar-brand">
+					<small><i class="fa fa-home"></i>办公管理系统</small>
+				</a>
+			</div>
+			<div class="navbar-buttons navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+					<li class="red">
+						<a href="#" title="前台首页" target="_blank">
+							<i class="ace-icon fa fa-home"></i>
+						</a>
+					</li>
+					<li class="light-blue">
+						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+						{if condition='$Think.session.photo eq true'}
+							<img style="width:40px;height: 40px" class="nav-user-photo" src="/uploads/{$Think.session.photo}" alt="admin" />
+						{else/}
+							<img style="width:40px;height: 40px" class="nav-user-photo" src="__IMAGES__/user.png" alt="admin" /> 
+						{/if}
+							<span class="user-info">
+							<small>欢迎光临</small>{$Think.session.username}</span><i class="ace-icon fa fa-caret-down"></i>
+						</a>
+						<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+							<li>
+								<a href="/index/profile/index"><i class="ace-icon fa fa-user"></i>个人资料</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="/index/login/out"><i class="ace-icon fa fa-power-off"></i>退出</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- 导航结束 -->
+
+	<!-- <div class="ace-settings-container" id="ace-settings-container">
+		<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+			<i class="ace-icon fa fa-cog bigger-130"></i>
+		</div>
+		<div class="ace-settings-box clearfix" id="ace-settings-box">
+			<div class="pull-left width-50">
+				<div class="ace-settings-item">
+					<div class="pull-left">
+						<select id="skin-colorpicker" class="hide">
+							<option data-skin="no-skin" value="#438EB9">#438EB9</option>
+							<option data-skin="skin-1" value="#222A2D">#222A2D</option>
+							<option data-skin="skin-2" value="#C6487E">#C6487E</option>
+							<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+						</select>
+					</div>
+					<span>&nbsp; 选择皮肤</span>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-navbar"/>
+					<label class="lbl" for="ace-settings-navbar"> 固定导航条</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-sidebar"/>
+					<label class="lbl" for="ace-settings-sidebar"> 固定侧边栏</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-breadcrumbs"/>
+					<label class="lbl" for="ace-settings-breadcrumbs"> 固定面包屑</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"/>
+					<label class="lbl" for="ace-settings-rtl"> 切换至左边</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-add-container"/>
+					<label class="lbl" for="ace-settings-add-container">切换宽窄度</label>
+				</div>
+			</div>
+			<div class="pull-left width-50">
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover"/>
+					<label class="lbl" for="ace-settings-hover"> 子菜单收起</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact"/>
+					<label class="lbl" for="ace-settings-compact"> 侧边栏紧凑</label>
+				</div>
+				<div class="ace-settings-item">
+					<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight"/>
+					<label class="lbl" for="ace-settings-highlight"> 当前位置</label>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<div class="main-container" id="main-container">
+	<!-- 左侧侧边栏 -->
+		<div id="sidebar" class="sidebar responsive">
+			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+				<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+					<button class="btn btn-success">
+						<i class="ace-icon fa fa-signal"></i>
+					</button>
+					<button class="btn btn-info">
+						<i class="ace-icon fa fa-pencil"></i>
+					</button>
+					<button class="btn btn-warning">
+						<i class="ace-icon fa fa-users"></i>
+					</button>
+					<button class="btn btn-danger">
+						<i class="ace-icon fa fa-cogs"></i>
+					</button>
+				</div>
+				<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+					<span class="btn btn-success"></span>
+					<span class="btn btn-info"></span>
+					<span class="btn btn-warning"></span>
+					<span class="btn btn-danger"></span>
+				</div>
+			</div>
+			<ul class="nav nav-list">
+				<li class="active">
+					<a href="/index/index/index">
+						<i class="menu-icon fa fa-tachometer"></i>
+						<span class="menu-text">控制台</span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+				<!-- 顶级权限遍历开始 -->
+
+				{foreach name='leftRules' item='val'}
+				<li>
+					<a href="#" class="dropdown-toggle">
+						<i class="menu-icon fa fa-{$val['icon']}"></i>
+						<span class="menu-text">{$val['Rule_name']}</span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+
+					<!-- 一级权限遍历开始 -->
+
+					{foreach name='$val.list' item='v'}
+						<li>
+							<a href="/{$v['address']}"><i class="menu-icon fa fa-caret-right"></i>{$v['Rule_name']}</a>
+							<b class="arrow"></b>
+						</li>
+					{/foreach}
+
+					<!-- 一级权限遍历结束 -->
+
+					</ul>              
+				</li>
+				{/foreach}
+
+				<!-- 顶级权限遍历结束 -->
+
+				<li>
+					<a href="#" class="dropdown-toggle">
+						<i class="menu-icon fa fa-user"></i>
+						<span class="menu-text">个人中心</span>
+						<b class="arrow fa fa-angle-down"></b>
+					</a>
+					<b class="arrow"></b>
+					<ul class="submenu">
+						<li>
+							<a href="/index/profile/index"><i class="menu-icon fa fa-user"></i>个人资料</a>
+							<b class="arrow"></b>
+						</li>
+						<li>
+							<a href="/index/login/out"><i class=""></i>退出</a>
+							<b class="arrow"></b>
+						</li>                    
+					</ul>
+				</li>
+			</ul>
+			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+				<i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left"
+				data-icon2="ace-icon fa fa-angle-double-right"></i>
+			</div>
+		</div>
+		<!-- 左侧侧边栏结束 -->
+
+		<!-- 主体 -->
+		{__CONTENT__}
+		<!-- 主体结束 -->
+		<div class="footer">
+		<!-- 尾部 -->
+			<div class="footer-inner">
+				<div class="footer-content">
+					<span class="bigger-120">
+					<small>Copyright &copy; 2017 ujiuye All Rights Reserved.</small>
+					</span>
+				</div>
+			</div>
+		</div>
+		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+		</a>
+	</div>
+	<!-- 尾部结束 -->
+	<script src="__JS__/bootstrap.js"></script>
+	<script src="__JS__/bootbox.js"></script>
+	<script src="__JS__/ace/elements.scroller.js"></script>
+	<script src="__JS__/ace/elements.colorpicker.js"></script>
+	<script src="__JS__/ace/elements.aside.js"></script>
+	<script src="__JS__/ace/ace.js"></script>
+	<script src="__JS__/ace/ace.touch-drag.js"></script>
+	<script src="__JS__/ace/ace.sidebar.js"></script>
+	<script src="__JS__/ace/ace.sidebar-scroll-1.js"></script>
+	<script src="__JS__/ace/ace.submenu-hover.js"></script>
+	<script src="__JS__/ace/ace.widget-box.js"></script>
+	<script src="__JS__/ace/ace.settings.js"></script>
+	<script src="__JS__/ace/ace.settings-rtl.js"></script>
+	<script src="__JS__/ace/ace.settings-skin.js"></script>
+	<script src="__JS__/jquery-ui.js"></script>
+	<script src="__JS__/ace/elements.fileinput.js"></script>
+	<script src="__JS__/date-time/bootstrap-datepicker.js"></script>
+	<script src="__JS__/jquery.validate.js"></script>
+
+	<script type="text/javascript">
+		jQuery(function ($) {
+			$('#birthday').datepicker({
+				format: 'yyyy-mm-dd',
+				weekStart: 1,
+				autoclose: true,
+				todayBtn: 'linked',
+				language: 'cn'
+			});
+		});
+		$('#id-input-file-2').ace_file_input({
+			no_file:'未选择文件 ...',
+			btn_choose:'选择',
+			btn_change:'更换',
+			droppable:false,
+			onchange:null,
+			thumbnail:false
+		});
+		$('#id-input-file-2').ace_file_input('show_file_list', ['myfile.jpg'])
+	</script>
+
+	
+
+</body>
+</html>

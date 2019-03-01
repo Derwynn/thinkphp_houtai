@@ -1,0 +1,151 @@
+{layout name='layout' /}
+<div class="main-content">
+	<div class="main-content-inner">
+		<div class="breadcrumbs" id="breadcrumbs">
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="index.html">首页</a>
+				</li>
+				<li>
+					<a href="#">系统设置</a>
+				</li>
+				<li class="active">修改用户组</li>
+			</ul>
+		</div>
+		<div class="page-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<form class="form-horizontal" action="" method="post" id="myform"> 
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 用户组名 </label>
+							<div class="col-sm-9">
+								<input type="text" placeholder="用户组名" class="col-xs-10 col-sm-5" value="{$info.name}" name="name">
+								<span class="help-inline col-xs-12 col-sm-7">
+									<span class="middle"></span>
+								</span>
+							</div>
+						</div>
+						<div class="space-4"></div>
+
+						{if  condition='$info.id neq 1'}
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-1">权限选择 </label>
+							<div class="col-sm-9">
+								<div class="col-sm-10">
+								<!-- 顶级权限遍历开始 -->
+								{foreach name='rules' item='first'}
+									<div class="row">
+										<div class="widget-box">
+											<div class="widget-header">
+												<h4 class="widget-title">
+													<label>
+														<input class="ace ace-checkbox-2 father first" type="checkbox" name="rule[]" value="{$first.id}" {$first.k == 1 ? "checked" :""} />
+														<!-- 顶级权限名称 -->
+														<span class="lbl">{$first['Rule_name']}</span>
+
+													</label>
+												</h4>
+												<div class="widget-toolbar">
+													<a href="#" data-action="collapse">
+														<i class="ace-icon fa fa-chevron-up"></i>
+													</a>
+												</div>
+											</div>
+											<div class="widget-body">
+												<!-- 一级权限循环遍历开始 -->
+												{foreach name='$first.list' item='second'}
+												<div class="widget-main row">
+													<!-- 一级权限 -->
+													<label class="col-xs-2">
+														<input class="ace ace-checkbox-2 second" type="checkbox" name="rule[]" value="{$second.id}" {$second.k == 1 ? "checked" :""} />
+														<span class="lbl">{$second.Rule_name}</span>
+													</label>
+
+													<!-- 二级权限循环遍历开始 -->
+													{foreach  name='$second.list' item='three'}
+													<label class="col-xs-2">
+														<input class="ace ace-checkbox-2 three" type="checkbox" name="rule[]" value="{$three.id}" {$three.k == 1 ? "checked" :""}/>
+														<span class="lbl">{$three.Rule_name}</span>
+													</label>
+													{/foreach}
+													<!-- 二级权限循环遍历结束 -->
+												</div>
+												{/foreach}
+
+												<!-- 一级权限循环遍历结束 -->
+											</div>
+										</div>
+									</div>
+								{/foreach}
+								<!-- 顶级权限遍历结束 -->
+								</div>
+							</div>
+						</div>
+
+						{/if}
+						<div class="space-4"></div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 是否启用 </label>
+							<div class="radio">
+								<label>
+									<input type="radio" class="ace" name="status" value='1' {$info.status == 1 ? 'checked' : ""}>
+									<span class="lbl"> 启用</span>
+								</label>
+								<label>
+									<input type="radio" class="ace" name="status" value='2' {$info.status == 2 ? 'checked' :""}>
+									<span class="lbl"> 禁用</span>
+								</label>
+							</div>
+						</div>
+						<div class="col-md-offset-2 col-md-9">
+							<button class="btn btn-info submit" type="submit"><i class="icon-ok bigger-110"></i>修改</button>&nbsp; &nbsp; &nbsp;
+							<button class="btn" type="reset"><i class="icon-undo bigger-110"></i>重置</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+		$('.first').click(function(){
+
+			$(this).parents('.widget-box').find("input[type='checkbox']").prop('checked',$(this).prop("checked"));
+		});
+
+		$('.second').click(function(){
+
+			$(this).parents('.widget-main').find('.three').prop('checked',$(this).prop("checked"));
+
+			if($(this).prop("checked")){
+
+				$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+			}else{
+				 if($(this).parents('.widget-box').find('.second:checked').length <=0){
+				 	$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+				 }
+				 
+			}
+			
+		})
+
+
+		$('.three').click(function(){
+			if($(this).prop("checked")){
+
+				$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+
+				$(this).parents('.widget-main').find('.second').prop('checked',$(this).prop("checked"));
+			}else{
+				if($(this).parents('.widget-main').find('.three:checked').length <=0){
+					$(this).parents('.widget-main').find('.second').prop('checked',$(this).prop("checked"));
+				}	
+				 if($(this).parents('.widget-box').find('.second:checked').length <=0){
+				 	$(this).parents('.widget-box').find('.first').prop('checked',$(this).prop("checked"));
+				 }
+			}
+		})
+
+</script>

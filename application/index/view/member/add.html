@@ -1,0 +1,138 @@
+{layout name="layout" /}
+<div class="main-content">
+			<div class="main-content-inner">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="#">用户及组</a>
+						</li>
+						<li class="active">新增用户</li>
+					</ul>
+				</div>
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 用户组 </label>
+									<div class="col-sm-9">
+										<select class="rcol-xs-10 col-sm-5" name="group_id">
+										<!-- 用户组遍历开始 -->
+										{foreach name='groups' item='val'}
+											<option value="{$val.id}">{$val.name}</option>
+											<!-- 用户组遍历结束 -->
+											{/foreach}
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle">请慎重选择用户组</span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 用户名 </label>
+									<div class="col-sm-9">
+										<input type="text" class="rcol-xs-10 col-sm-5" name="username" value="">
+										<span class="help-inline col-xs-12 col-sm-7"></span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 用户密码 </label>
+									<div class="col-sm-9">
+										<input type="password" placeholder="用户密码" class="col-xs-10 col-sm-5" name='password' value=''>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle">留空不修改</span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 用户头像 </label>
+									<div class="col-sm-4">
+										<input type="file" id="id-input-file-2" name="photo"/>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 性别 </label>
+									<div class="col-sm-9">
+										<select class="multiselect" name="sex">
+											<option value="0" selected="selected">保密</option>
+											<option value="1">男</option>
+											<option value="2">女</option>
+										</select>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right" for="id-date-picker-1">生日</label>
+									<div class="col-xs-9 col-sm-9">
+										<div class="input-group col-xs-5">
+											<input class="form-control" id="birthday" type="text" data-date-format="dd-mm-yyyy" name="birthday" value="" />
+											<span class="input-group-addon">
+												<i class="ace-icon fa fa-calendar bigger-110"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 电话号码 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="电话号码" class="col-xs-10 col-sm-5" name="phone" value="">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> Q&nbsp;&nbsp;Q </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="QQ" class="col-xs-10 col-sm-5" name="qq" value="">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right">E-mail </label>
+									<div class="col-sm-9">
+										<input type="email" placeholder="E-mail" class="col-xs-10 col-sm-5" name="email" value="">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 状态 </label>
+									<div class="radio">
+										<label>
+											<input type="radio" class="ace" name="status" value='1' checked="1">
+											<span class="lbl"> 在职</span>
+										</label>
+										<label>
+											<input type="radio" class="ace" name="status" value='2'>
+											<span class="lbl"> 离职</span>
+										</label>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="col-md-offset-2 col-md-9">
+									<button class="btn btn-info" type="submit"><i class="icon-ok bigger-110"></i>添加</button>&nbsp; &nbsp; &nbsp;
+									<button class="btn" type="reset"><i class="icon-undo bigger-110"></i>重置</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	

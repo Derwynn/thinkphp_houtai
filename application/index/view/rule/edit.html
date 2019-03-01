@@ -1,0 +1,118 @@
+{layout name='layout' /}
+<div class="main-content">
+			<div class="main-content-inner">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="/">首页</a>
+						</li>
+						<li>
+							<a href="#">权限规则</a>
+						</li>
+						<li class="active">修改权限</li>
+					</ul>
+				</div>
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal" action="/index/rule/updates" method="post">
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right" for="form-field-10">上级权限 </label>
+									<div class="col-sm-9">
+										<select class="rcol-xs-10 col-sm-5"  name="pid">
+											<!-- 顶级权限 -->
+											<option value="0" {$info.pid == 0 ?'selected' : ""}>顶级权限</option>
+											<!-- 顶级权限结束 -->
+											<!-- 所有权限便利开始 -->
+											{foreach name='rules' item='val'}
+												<option value="{$val.id}" {$info.pid == $val.id ?"selected" :"" }>{$val.Rule_name}</option>
+											{/foreach}
+											<!-- 结束 -->
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<input type="hidden" value="{$info.id}" name="id">
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 权限名称 </label>
+									<div class="col-sm-9">
+										<input type="text" class="rcol-xs-10 col-sm-5" name="Rule_name" value="{$info.Rule_name}">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 链接 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="链接，如：Index/index" class="col-xs-10 col-sm-5" name="address" value="{$info.address}">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right">ICON图标 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="ICON图标" class="col-xs-10 col-sm-5" name="icon" value="{$info.icon}">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"><a href="http://fontawesome.dashgame.com/" target="_blank">Font Awesome图标库</a></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 排序 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="" class="col-xs-10 col-sm-5" name="sort" value="{$info.sort}">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 是否显示 </label>
+									<div class="radio">
+										<label>
+											<input type="radio" class="ace" name="Is_show" value="1" {$info.Is_show == 1?"checked" :""}> 
+											<span class="lbl"> 显示</span>
+										</label>
+										<label>
+											<input type="radio" class="ace" name="Is_show" value="2" {$info.Is_show == 2?"checked" :""}>
+											<span class="lbl"> 不显示</span>
+										</label>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 是否启用 </label>
+									<div class="radio">
+										<label>
+											<input type="radio" class="ace" name="status" value="1" {$info.status == 1 ?'checked' :""}>
+											<span class="lbl"> 启用</span>
+										</label>
+										<label>
+											<input type="radio" class="ace" name="status" value="2" {$info.status == 2 ?'checked' :""}>
+											<span class="lbl"> 禁用</span>
+										</label>
+									</div>
+								</div>
+								
+								<div class="space-4"></div>
+								<div class="col-md-offset-2 col-md-9">
+									<button class="btn btn-info" type="submit"><i class="icon-ok bigger-110"></i>修改</button>&nbsp; &nbsp; &nbsp;
+									<button class="btn" type="reset"><i class="icon-undo bigger-110"></i>重置</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

@@ -1,0 +1,115 @@
+{layout name='layout' /}
+	<div class="main-content">
+			<div class="main-content-inner">
+				<div class="breadcrumbs" id="breadcrumbs">
+					<ul class="breadcrumb">
+						<li>
+							<i class="ace-icon fa fa-home home-icon"></i>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="#">权限规则</a>
+						</li>
+						<li class="active">新增权限</li>
+					</ul>
+				</div>
+				<div class="page-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<form class="form-horizontal" action="" method="post">
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right" for="form-field-10">上级权限 </label>
+									<div class="col-sm-9">
+										<select class="rcol-xs-10 col-sm-5"  name="pid">
+										<option value="0" selected="selected">顶级权限</option>
+											{foreach name='rules' item='v'}
+											<option value="{$v.id}">{$v.Rule_name}</option>
+								        	{/foreach}
+										</select>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 权限名称 </label>
+									<div class="col-sm-9">
+										<input type="text" class="rcol-xs-10 col-sm-5" name='Rule_name'>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 链接 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="路径，如：Index/index" class="col-xs-10 col-sm-5" name='address'>
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right">ICON图标 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="ICON图标" class="col-xs-10 col-sm-5" name="icon" value="">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"><a href="http://fontawesome.dashgame.com/" target="_blank">Font Awesome图标库</a></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 排序 </label>
+									<div class="col-sm-9">
+										<input type="text" placeholder="" class="col-xs-10 col-sm-5" name="sort">
+										<span class="help-inline col-xs-12 col-sm-7">
+											<span class="middle"></span>
+										</span>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right"> 是否显示 </label>
+									<div class="radio">
+										<label>
+											<input type="radio" class="ace" name="Is_show" value='1' checked>
+											<span class="lbl"> 显示</span>
+										</label>
+										<label>
+											<input type="radio" class="ace" name="Is_show" value='2'>
+											<span class="lbl"> 隐藏</span>
+										</label>
+									</div>
+								</div>
+								<div class="space-4"></div>
+								<div class="form-group">
+									<label class="col-sm-1 control-label no-padding-right">是否启用</label>
+									<div class="radio">
+										<label>
+											<input type="radio" class="ace" name="status"
+											value="1" checked>
+											<span class="lbl"> 启用</span>
+										</label>
+										<label>
+											<input type="radio" class="ace" name="status"
+											value="2">
+											<span class="lbl"> 禁用</span>
+										</label>
+									</div>
+								</div>
+								
+								<div class="space-4"></div>
+								<div class="col-md-offset-2 col-md-9">
+									<button class="btn btn-info" type="submit"><i class="icon-ok bigger-110"></i>添加</button>&nbsp; &nbsp; &nbsp;
+									<button class="btn" type="reset"><i class="icon-undo bigger-110"></i>重置</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
